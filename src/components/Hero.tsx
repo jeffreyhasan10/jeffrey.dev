@@ -82,7 +82,7 @@ const Hero: React.FC = () => {
               <p className="text-neon-blue font-medium text-xs sm:text-sm">Full-Stack Developer</p>
             </div>
             
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4 parallax-layer">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-display font-bold mb-4 parallax-layer">
               Hello, I'm <span className="text-gradient">{personalInfo.name}</span>
             </h1>
             
