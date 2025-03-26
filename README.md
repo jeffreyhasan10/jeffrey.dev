@@ -1,6 +1,6 @@
 # Jeffrey.dev
 
-![Jeffrey Hasan C](/Jeffrey.png)
+![Jeffrey Hasan C](./public/Jeffrey.png)
 
 **Jeffrey Hasan C’s personal portfolio, showcasing full-stack innovation with modern web technologies.**
 
