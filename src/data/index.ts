@@ -77,7 +77,7 @@ export const experience: Experience[] = [
     company: "AK Infopark",
     role: "Web Developer Intern",
     duration: "March 13 - April 12, 2024",
-    location: "Hybrid",
+    location: "Onsite",
     type: "Internship",
     description: [
       "Developed a React-based Nike shoe e-commerce platform.",

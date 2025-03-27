@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { personalInfo } from '@/data';
 import { Menu, X } from 'lucide-react';
@@ -26,12 +25,8 @@ const Navigation: React.FC = () => {
   }, []);
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-    if (!isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
+    setIsMobileMenuOpen((prev) => !prev);
+    document.body.style.overflow = isMobileMenuOpen ? 'auto' : 'hidden';
   };
 
   const closeMobileMenu = () => {
@@ -42,32 +37,34 @@ const Navigation: React.FC = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'py-3 glassmorphism backdrop-blur-lg shadow-md' : 'py-4 sm:py-6 bg-transparent'
+        isScrolled 
+          ? 'py-2 sm:py-3 glassmorphism backdrop-blur-lg shadow-md' 
+          : 'py-3 sm:py-4 md:py-6 bg-transparent'
       }`}
     >
-      <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
+      <div className="container mx-auto px-4 sm:px-6 flex justify-between items-center">
         <a 
           href="#" 
-          className="text-lg sm:text-xl md:text-2xl font-display font-bold text-white flex items-center"
+          className="text-base sm:text-lg md:text-xl lg:text-2xl font-display font-bold text-white flex items-center"
         >
           <span className="text-gradient">Jeffrey</span>
           <span className="ml-1">.dev</span>
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-4 lg:space-x-8">
+        <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 xl:space-x-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-sm relative text-gray-300 hover:text-white transition-colors duration-300 after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-neon-blue after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left"
+              className="text-xs sm:text-sm lg:text-base relative text-gray-300 hover:text-white transition-colors duration-300 after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-neon-blue after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left"
             >
               {link.name}
             </a>
           ))}
           <a
             href="#contact"
-            className="bg-neon-blue text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-md hover:bg-neon-blue/90 transition-colors duration-300 text-sm"
+            className="bg-neon-blue text-white px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 rounded-md hover:bg-neon-blue/90 transition-colors duration-300 text-xs sm:text-sm"
           >
             Get in Touch
           </a>
@@ -75,7 +72,7 @@ const Navigation: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-white focus:outline-none"
+          className="md:hidden text-white focus:outline-none p-2"
           onClick={toggleMobileMenu}
           aria-label="Toggle mobile menu"
         >
@@ -84,31 +81,35 @@ const Navigation: React.FC = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div
-        className={`fixed inset-0 z-40 bg-dark-100/95 backdrop-blur-xl transition-all duration-300 md:hidden ${
-          isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-      >
-        <div className="flex flex-col h-full justify-center items-center space-y-6 p-4">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-xl font-medium text-white hover:text-neon-blue transition-colors duration-300"
-              onClick={closeMobileMenu}
-            >
-              {link.name}
-            </a>
-          ))}
-          <a
-            href="#contact"
-            className="mt-4 bg-neon-blue text-white px-6 py-3 rounded-md hover:bg-neon-blue/90 transition-colors duration-300"
-            onClick={closeMobileMenu}
-          >
-            Get in Touch
-          </a>
+      {isMobileMenuOpen && (
+        <div
+          className="md:hidden fixed inset-0 z-40 bg-dark-100/95 backdrop-blur-xl transition-all duration-300 ease-in-out animate-slide-down"
+        >
+          <div className="min-h-screen flex flex-col pt-20 pb-8 px-6 overflow-y-auto">
+            <div className="flex-grow flex flex-col items-center justify-center space-y-6">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-lg sm:text-xl font-medium text-white hover:text-neon-blue transition-colors duration-300 py-3 w-full text-center"
+                  onClick={closeMobileMenu}
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
+            <div className="mt-6 flex justify-center">
+              <a
+                href="#contact"
+                className="bg-neon-blue text-white px-8 py-3 rounded-md hover:bg-neon-blue/90 transition-colors duration-300 text-base sm:text-lg"
+                onClick={closeMobileMenu}
+              >
+                Get in Touch
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </header>
   );
 };
