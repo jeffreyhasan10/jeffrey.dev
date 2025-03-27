@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { personalInfo } from '@/data';
 import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,14 +37,14 @@ const Navigation: React.FC = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'py-2 sm:py-3 glassmorphism backdrop-blur-lg shadow-md' 
+        isScrolled
+          ? 'py-2 sm:py-3 glassmorphism backdrop-blur-lg shadow-md'
           : 'py-3 sm:py-4 md:py-6 bg-transparent'
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 flex justify-between items-center">
-        <a 
-          href="#" 
+        <a
+          href="#"
           className="text-base sm:text-lg md:text-xl lg:text-2xl font-display font-bold text-white flex items-center"
         >
           <span className="text-gradient">Jeffrey</span>
@@ -64,52 +64,58 @@ const Navigation: React.FC = () => {
           ))}
           <a
             href="#contact"
-            className="bg-neon-blue text-white px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 rounded-md hover:bg-neon-blue/90 transition-colors duration-300 text-xs sm:text-sm"
+            className="bg-neon-blue text-white px-3 py-2 rounded-md hover:bg-neon-blue/90 transition-colors duration-300 text-xs sm:text-sm inline-flex"
           >
             Get in Touch
           </a>
         </nav>
 
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-white focus:outline-none p-2"
-          onClick={toggleMobileMenu}
-          aria-label="Toggle mobile menu"
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex md:hidden items-center space-x-2">
+          <button
+            className="text-white focus:outline-none p-2"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle mobile menu"
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div
-          className="md:hidden fixed inset-0 z-40 bg-dark-100/95 backdrop-blur-xl transition-all duration-300 ease-in-out animate-slide-down"
-        >
-          <div className="min-h-screen flex flex-col pt-20 pb-8 px-6 overflow-y-auto">
-            <div className="flex-grow flex flex-col items-center justify-center space-y-6">
-              {navLinks.map((link) => (
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'spring', stiffness: 120, damping: 15 }}
+            className="fixed inset-0 z-40 bg-gradient-to-br from-black via-gray-900 to-gray-800 backdrop-blur-xl"
+          >
+            <div className="min-h-screen flex flex-col pt-20 pb-8 px-6 overflow-y-auto">
+              <div className="flex-grow flex flex-col items-center justify-center space-y-6">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="text-lg sm:text-xl font-medium text-white hover:text-neon-blue transition-colors duration-300 py-3 w-auto"
+                    onClick={closeMobileMenu}
+                  >
+                    {link.name}
+                  </a>
+                ))}
                 <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-lg sm:text-xl font-medium text-white hover:text-neon-blue transition-colors duration-300 py-3 w-full text-center"
+                  href="#contact"
+                  className="bg-neon-blue text-white px-6 py-3 rounded-md hover:bg-neon-blue/90 transition-colors duration-300 text-base sm:text-lg inline-flex"
                   onClick={closeMobileMenu}
                 >
-                  {link.name}
+                  Get in Touch
                 </a>
-              ))}
+              </div>
             </div>
-            <div className="mt-6 flex justify-center">
-              <a
-                href="#contact"
-                className="bg-neon-blue text-white px-8 py-3 rounded-md hover:bg-neon-blue/90 transition-colors duration-300 text-base sm:text-lg"
-                onClick={closeMobileMenu}
-              >
-                Get in Touch
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
