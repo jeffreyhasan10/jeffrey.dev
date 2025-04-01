@@ -228,7 +228,7 @@ export const projects: Project[] = [
       "MySQL",
     ],
     github:
-      "https://github.com/jeffreyhasan10/PortfolioProjects/tree/main/StudentsAttendanceManagement",
+      "https://github.com/jeffreyhasan10/Portfolio-Projects",
   },
   {
     id: 5,
@@ -243,7 +243,7 @@ export const projects: Project[] = [
       "ThingSpeak IoT",
     ],
     github:
-      "https://github.com/jeffreyhasan10/PortfolioProjects/tree/main/FoodyBuddy-main",
+      "https://github.com/jeffreyhasan10/Portfolio-Projects/tree/main/FoodyBuddy-main",
   },
   {
     id: 6,
@@ -251,7 +251,7 @@ export const projects: Project[] = [
     description: "React-based e-commerce site with RESTful API integration.",
     technologies: ["React", "JavaScript", "HTML5", "CSS3", "Tailwind CSS"],
     github:
-      "https://github.com/jeffreyhasan10/PortfolioProjects/tree/main/5-AKinfopark/nike-ecommerce",
+      "https://github.com/jeffreyhasan10/Portfolio-Projects/tree/main/5-AKinfopark/nike-ecommerce",
   },
 ];
 
