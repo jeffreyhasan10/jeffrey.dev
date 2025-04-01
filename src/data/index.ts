@@ -116,7 +116,7 @@ export const experience: Experience[] = [
     ],
     technologies: ["React", "JavaScript", "HTML5", "CSS3", "RESTful APIs"],
     github:
-      "https://github.com/jeffreyhasan10/PortfolioProjects/tree/main/5-AKinfopark/nike-ecommerce",
+      "https://github.com/jeffreyhasan10/Portfolio-Projects/tree/main/5-AKinfopark/nike-ecommerce",
   },
 ];
 
@@ -264,6 +264,6 @@ export const achievements: Achievement[] = [
       "Developed and deployed using ML on IBM Cloud; selected as a top project by Tamil Nadu Skill Development Corporation.",
       "Presented to IBM officials; showcased skills in ML, customer data analysis, and personalization.",
     ],
-    link: "https://github.com/naanmudhalvan-SI/IBM--18463-1682491867",
+    // link: "https://github.com/naanmudhalvan-SI/IBM--18463-1682491867",
   },
 ];
